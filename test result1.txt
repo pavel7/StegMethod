@@ -1,0 +1,50 @@
+"C:\Program Files (x86)\Java\jdk1.8.0_25\bin\java" -Didea.launcher.port=7532 "-Didea.launcher.bin.path=D:\programs\IntelliJ IDEA Community Edition 15.0\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\deploy.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\javaws.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jfxswt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\management-agent.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\plugin.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\access-bridge-32.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\cldrdata.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\dnsns.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\jaccess.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\jfxrt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\localedata.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\nashorn.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunec.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunjce_provider.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunmscapi.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunpkcs11.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\zipfs.jar;D:\asp\progs\out\production\DigitalWatermarking;D:\asp\libs\xuggle-xuggler-5.4.jar;D:\asp\libs\slf4j-api-1.7.12.jar;D:\asp\libs\log4j-over-slf4j-1.7.12.jar;D:\asp\libs\slf4j-nop-1.7.12.jar;D:\programs\IntelliJ IDEA Community Edition 15.0\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain TestVideo
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Test result:
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Volume of noise is 0, value of the error is 0
+start
+finish
+µC%Hë¶ÞbâèaývmsåvÜc{_gMÜâ´°ø&!õº%
+gq¢0lxZ6Nr¦§ÄÄ:`÷âbnZT5@dP"bUl	á~fnÑËh DÍzrLVM0RÆk`\íQqÎ½erwoéHiNPO#z` F:,@-*we[éUlkcN<µooî|L¬àdhuó}1mne6à9~mg¡¥bÌÐmg.)LÎßnrdeb&Q(wgm,y>C_.$!Lpxoô!06&3
+2.a"NrØExpozÕ#20*.8Z"® $Pl~§h. AqncaR p.3."NotGpàP#« &ô|h×´x+¾2|îi¡@e{
+Volume of noise is 10, value of the error is 90
+start
+finish
+t/Jû[jzWÍG¾êV3rS_i5ÎHwzÙcD¼
+lÍ>Lâ¥ÅÅ<n9M	´M N'd]BåRQÈ¿DP3(D| F
+²,_QJoãÁB(ocã¸u( ògc ©/Àki£ÞÈT3ødn&1b}h*¢åvnQVmádªÇNw:Ae#E§`FiNm¾> #,*z6R52uw
+4+b¤Nð´Eú'æT1'7.²z$l 'RLs:cÎ Mùî÷AUÒ 1.l5*/]Tb@w«`U6æsÄè²QË<ev]í<§T9×<{>
+Volume of noise is 20, value of the error is 95
+start
+finish
+÷7þÅHBZjï0ª/çÎz?Ôãf6þ)¨ÑdÆÆe>[ºÎâíEð1R¾ÚÁy ô3ßHËÒ´é©ÿ+v/íT-(¤ªY@æÖQç¼vC4Hq©dÛLñR<8vÊ>¸åt¶Uóµ4ÀJa'74ôÍ[LÜ-¸s)«&)º¦­H*)wC_/¢7Jf®j( Õ¸Ú8ß²+ud`âû1Çä}hFîÔbO@Iw.ônh?öëØÍuà.ÍÈ5&q.õÞp--PÄjP1ãbD~ JwpÁÍWxéD´ÄFv(OaÀÂ/~oG{(£8²)býÛ×sïJàBÇÁ`iqv( S!gíe¥CP¹dC¡·8k&¸!vglBÕ»}u&e¯Ùvâ(^#)+R%P<>PDh±õ b	1[Áx¨f=p;úä:2$D¤0Ó(` ç|­IÁÎAnn"9>¤å+ôov}`ªà+é`w?Wì$æ jÂFÆ cÏZ)©#ÁÒ;iRz¶
+Volume of noise is 30, value of the error is 97
+start
+finish
+7e@t XåÎÀnôÃV³¬³Þo[ZßÀùZþ4},j#¿ÑO0 	Ü+éDû\`Mµ0©A_',³âÆvûÈØê[ïéÊ½K|Ê¶a|¨k*¾Ü³ã§ú2Aw.@S8NFÍ48ìwêj»ñ¹}²eøC/®'å~.)}Æ¯TîÔ.S[C.´¡eig\ |jgy1ó gv"Ò&PndÅâuìì«¿ëcr %Ýb½Ôé6kv@T[SlyDU"w÷+WfM2!ý%gaÌt4¯¸Q6#Zk:#¢À$®n04÷> ¼s(2g#8¶A'ÚVõÐ85*CÉîCG/3$c·½¨CobU`cktí*\¿dKgy4ÒJV	JDS"ä ráÜ-H»
+Volume of noise is 40, value of the error is 98

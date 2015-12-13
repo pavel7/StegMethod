@@ -1,0 +1,175 @@
+"C:\Program Files (x86)\Java\jdk1.8.0_25\bin\java" -Didea.launcher.port=7533 "-Didea.launcher.bin.path=D:\programs\IntelliJ IDEA Community Edition 15.0\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\deploy.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\javaws.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jfxswt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\management-agent.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\plugin.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\access-bridge-32.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\cldrdata.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\dnsns.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\jaccess.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\jfxrt.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\localedata.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\nashorn.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunec.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunjce_provider.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunmscapi.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\sunpkcs11.jar;C:\Program Files (x86)\Java\jdk1.8.0_25\jre\lib\ext\zipfs.jar;D:\asp\progs\out\production\DigitalWatermarking;D:\asp\libs\xuggle-xuggler-5.4.jar;D:\asp\libs\slf4j-api-1.7.12.jar;D:\asp\libs\log4j-over-slf4j-1.7.12.jar;D:\asp\libs\slf4j-nop-1.7.12.jar;D:\programs\IntelliJ IDEA Community Edition 15.0\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain TestVideo
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Test result:
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Volume of noise is 0, value of the error is 0
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad displa} and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian(localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý¢e'#£ÛÆe.{¾é?ÇëÙ¹5
+Volume of noise is 10, value of the error is 5
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian \ocalization bad ecsplay aod wrong encoding.
+5.  Fix functiooist dirplay pònblem under high DPI>
+6&  Fix Nrwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppNTP 0.26.3
+2.  NppExport(v0.2.8
+3.  Plugin Manager 1.3.5JNotepadk+ v6]B|çµ.»(ó:õ¤¨Z¸G¾u¬õð~0yù
+Volume of noise is 20, value of the error is 8
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by usiNg option -noPltgin.
+4.  Fix Norwegian lokalization bad d)splay ajd wrgn' dncodiNw.
+5.  Fix funcdoÏnList¨dKsplay$pòoblem under Xigè FPI.
+6.  Fip Norwegian localizition bqd désplay and wzong enckding.
+Included pluginr:1.  NppFTP 0.26.3
+2.  NppExport v0.2.83.  Plugin Manager 1.³.5
+;µJÿÈwRû×Áþ{¾sÖð
+Volume of noise is 30, value of the error is 11
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit>
+3.  Fix plugin0shortcud configuration lost problem by using option -noPlugi..
+4.  Îix Norwegian locclizitioî jad dIrplay iîd wbon%!encodijo.*5& (Fi( functionList tésplay"probLem u~der (igh!FPI&
+6&  Fixdlorwegqa^$nncadmzition bat display and wRolg enco`ing.
+Kncluded pl5ginb:1.  NppNDP 0*26.3
+2.  NppExport v0.2.8
+3.  Plugin MAnagur 13.5NNotepad;+ v6ý¿/û>V¯}ÍSNo4ëç­fRÏËVÜ7å=ñ
+Volume of noise is 40, value of the error is 16
+start
+finish
+1.  Fix a srash issue by using wild card (:) to open files on command line.
+2.  Fix the prblem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using optikn -noPlqgin.
+.  Fix Norggian lo{ali:itkm® badB&Ísplay"i.d wbk.g5ancgdingª
+5.  ~}m &uncõ©go|is| f	3play ZrobDel0undçr Hégè DP	.6*  Fih$Nÿrwegiaf(nocanéjçtioN"fad di+play and Szgng e~coding.Ifcltded 0lugins:
+1.  NppLTP 0.26?3
+2.  OtpExporô,v0..8
+;.! Pluein Manag-r 1.3.5
+MèþáÏ³¤¶»½ügJÎþòß¿õ¶
+Volume of noise is 50, value of the error is 22
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the prgblem of display refresh missing0on exit.
+3.  Fix plugin shortcut configuration lost problem by esiîg option -noPlugin.
+4. #Æéx ^obwåeian Hncalizatyn. bá`"nq{tla} a<l wrgn'ancdin/**µ>  V(x funcdcoLis|"|)3p$a{&3xO`em!=~EGr high DPI.J6. "Fi| dgrwegaá~ noca|ihítioL bÍd ei{pl1{ anf0Fznfg gncidjfg,
+INgludeg xlug)Nr8Æ1n  NpqFTP p826:3
+2.  NppExport$v0.r.8
+7.  lughn ManagOr 1.3.5
+NoTeðafo+ v6ÿýý7IoGÏë6tþÜ3îo»XýÝu«üj
+Volume of noise is 60, value of the error is 28
+start
+finish
+1.  Fix a srash iscue by uSing wild card (:) to open files on commqnd line>
+2.  Fix the problem of0display0refresh missing0on exit>
+3.  Fix plugin shortcut configeration lost prorlem by UsmÎg optikn -l/pleGin.
+. !Zix Norg}gian"|ozgliZi|é. bal2lisplay"lm wron4ðöncodaoU.µ. (Jiý!f}nstmgoLkst ­o`Plai(¹÷NdLeua4ndgr igH Dp	n
+&.  Fht¨Zmrwec)evllocax©pitiobâst@eérplk9inE(&2glg gakdidg.Inc,uDef02nUbins:1.`¬NptBTP 0.2673
+2.( NtPGypopt&v0.².8;.  Plegin`MánagUb 1.1.5\Note0ad?+ v6-ÿõÝk}2£;ï7,@tþå·AúòÅØ©|¬
+Volume of noise is 70, value of the error is 36
+start
+finish
+1.0 Fix a srash isSue by using wild card () to open files on commAnd line>
+2.  Fix the problem of display refresh missing0on exit.
+3.  Fih plugin shortcuD configeration lost prïbleM by usyÎg*opVikn ¯.kqdpçi..
+4.7¥Vmx Nmr5¥aian)Rcóali:ipõç* bAhI.y_pLaqÈí(  wZaln:;ncodim~@5<` Dù| fnkfk§o!sx!C»pr¨ak÷@£~ddel ?Vg ¨ig¤ FPIî2® "Fmà UísveGyán¦LjcUtéÎïtiojêÙÞbdës¼gao hnf0ng~v g^cgdhdg8ËêgLuDEn outins8(2.% NptrtP p.22,3
+2$8NupEh0Ov´"v0&2.<
+3." îucýn MãOag#R 1.³$4FNoTapafy+!vvæXäÄ:Inû+ýà½ß<M&QôuaË³ºÜdW
+Volume of noise is 80, value of the error is 45
+start
+finish
+1.  Fix a crash isCue by using wilD card (:) to opmn fileson commQnd line>
+2.  Fix thd prblem(of(display(refreshmissing on exit>
+3.  Fiü plugin shortcuT configuration \ost pqoBlam b] õb{îG /0õiïî mf~öìugo.4.öæÈh foW_5uiaFcx4»eLiZaDmûO b`Ð}³s}lyqÑ·õwrn©pnc?div_e)`(m¹mñÆ.{bSÇl-5s}Fqë`pnaQ>SõbZemo9îdÇR x©çh@FpI>N2n($FiÙtoe3weC\áê/ogmìè0ítam"îyx°méz§*õ!èn#0õ¶eMw Wvïk jîÇ.EDg^gàe, T}5géLr>W1+ öor8`P!.	6u[6j  AhpgyP_vw|f7&Â$:7 4üabq Mámeer`1¸.6JNoT4ðe$=e7vúußóMe"MG§úµköî1ÊÏzÎÞÿýª
+Volume of noise is 90, value of the error is 56
+
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Test result:
+start
+finish
+!* FÉh a Srash )S[ue b{ Uci.g¨wIlD card (:) do oPgn file³0oN cmmeyje line&0>  iH the qz[b|gm of dispháy Refr¥S( misring0oj axkt
+3+  Fih plugIocxorvcõt colfiguration!^ouv pó-rluM$bê¨=sé?e(/àtiY> m;zîtïn<(]E?ø!OomC}L©a~Dm½'$Jj§nÃïoîfÁ¼øÛylÃrk^Á ´wg'}##_@i4Gj5> 8°Ø÷1þ÷îiykÝö~«svÞ_ÀVí±bvòø 8e}Ê]oA÷:`<ÉFA P­Ò+  máùqodna	Ü,/gcQ4­D'AmæâBìTd©:=E©ªÉj``vV+üf¢A|3;eh4C	GJâCvgäE 2|uhn>.$âoi¹8.@P°¬1*§Kæ.fË÷p@X´Mv~`³¶R.2
+}Bwb-, â_{ÜäþâÑß
+Volume of noise is 95, value of the error is 73
+
+start
+finish
+1.  Fix a crash issue by using wild card (*) to open files on command line.
+2.  Fix the problem of display refresh missing on exit.
+3.  Fix plugin shortcut configuration lost problem by using option -noPlugin.
+4.  Fix Norwegian localization bad display and wrong encoding.
+5.  Fix functionList display problem under high DPI.
+6.  Fix Norwegian localization bad display and wrong encoding.
+Included plugins:
+1.  NppFTP 0.26.3
+2.  NppExport v0.2.8
+3.  Plugin Manager 1.3.5
+Notepad++ v6Ý{=¡SÛ_Úòª'´¥×W¬Z_ºkç
+Test result:
+start
+finish
+, Ah  B`¢  #ÀeA  e1v@ BAd  a   @¨DF	X@  @kAb)m" ( 
+%   @  pDG D@F`d HPDx@D(A  AD#t   ¡N@ B @(a´0@@ JH  PhE&`a qpFD4$ @` `f  d@x ``($%(  @2(0FCA ËB "+H`¥± \aÀ@Rpd0$ZEA $1 l(Ä@  .Q@ B  Aa 3L%CE  bÂ
+à!Äô"  BÑ ,Â¢Áy@¢	 CD¡[2 @" a" @Dd"
+ÄD  Ä @ À
+GHP(I B)S&  	P¨ 4C`,H H 
+ (@# R   ` Q@@ @ V i äY  % "",
+ (¤FJÁ4 ÀT,@  
+L*@ %ò # ! v PÂ B"¢ùéd­°@
+Volume of noise is 99, value of the error is 96
+
+Process finished with exit code 0
