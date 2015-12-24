@@ -28,11 +28,11 @@ public class ImageBMP {
     }
 
     public int getNumberOfColumn() {
-        return img.getHeight();
+        return img.getWidth();
     }
 
     public int getNumberOfRow() {
-        return img.getWidth();
+        return img.getHeight();
     }
 
     public static double difference(ArrayList<double[][]> one, ArrayList<short[][]> two) {
