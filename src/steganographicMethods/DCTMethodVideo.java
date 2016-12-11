@@ -267,8 +267,8 @@ public class DCTMethodVideo {
                         if (timestamp > start) {
                             BufferedImage javaImage = Utils
                                     .videoPictureToImage(newPic);
-                            String fileName = numberOfFrames + ".png";
-                            ImageIO.write(javaImage, "PNG", new File(outdir,
+                            String fileName = numberOfFrames + ".jpg";
+                            ImageIO.write(javaImage, "JPG", new File(outdir,
                                     fileName));
                             numberOfFrames++;
 //                            ImageBMP imageInput = new ImageBMP(javaImage);
@@ -304,7 +304,7 @@ public class DCTMethodVideo {
         //return listOfSegments;
     }
 
-    public void insertText(String message) throws Exception {
+    public void insertText(String message, int firstImageNumber) throws Exception {
         int messageLength = message.length();
         short[] str2vec = new short[messageLength];
         ImageBMP firstImage = new ImageBMP("video\\pictures\\1.png");
@@ -321,7 +321,7 @@ public class DCTMethodVideo {
         if (numberOfSegments < messageLength)
             throw (new Exception("String is too long"));
         //for (int i = 0; i < numberOfImages; i++) {
-        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(0, "video\\pictures\\", ".png", numberOfRow, numberOfColumn);
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(0, "video\\pictures\\", ".png", numberOfColumn, numberOfRow);
         int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
         int sizeOfListOfBlueSegment = listOfBlueSegment.size();
         VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
@@ -347,14 +347,14 @@ public class DCTMethodVideo {
 
         }
 
-        insertMassage(coefOfDCT, message);
+        ArrayList<double[][][]> coefWithInsertedMessage =insertMassage(coefOfDCT, message);
 
         VideoInvertDCT[] listOfInvertDCT = new VideoInvertDCT[threadsNum];
         for (int k = 0; k < threadsNum; k++) {
             if (k != threadsNum - 1)
-                listOfInvertDCT[k] = new VideoInvertDCT(coefOfDCT, k * (sizeOfListOfBlueSegment / threadsNum), (k + 1) * (sizeOfListOfBlueSegment / threadsNum));
+                listOfInvertDCT[k] = new VideoInvertDCT(coefWithInsertedMessage, k * (sizeOfListOfBlueSegment / threadsNum), (k + 1) * (sizeOfListOfBlueSegment / threadsNum));
             else {
-                listOfInvertDCT[k] = new VideoInvertDCT(coefOfDCT, k * (sizeOfListOfBlueSegment / threadsNum), sizeOfListOfBlueSegment);
+                listOfInvertDCT[k] = new VideoInvertDCT(coefWithInsertedMessage, k * (sizeOfListOfBlueSegment / threadsNum), sizeOfListOfBlueSegment);
             }
         }
 
@@ -370,10 +370,10 @@ public class DCTMethodVideo {
             }
         }
         executorService.shutdown();
-        double[][][] resultedBluePixels = invertDCTToBluePixelsMassive(encodedSegments, numberOfRow, numberOfColumn);
+        double[][][] resultedBluePixels = invertDCTToBluePixelsMassive(encodedSegments, numberOfColumn, numberOfRow);
         for (int imageNumber = 0; imageNumber < sizeOfSegments; imageNumber++) {
-            normFunction(resultedBluePixels, imageNumber, numberOfRow, numberOfColumn);
-            encodeImage(numberOfRow, numberOfColumn, resultedBluePixels, imageNumber);
+            normFunction(resultedBluePixels, imageNumber, numberOfColumn, numberOfRow);
+            encodeImage(numberOfColumn, numberOfRow, resultedBluePixels, firstImageNumber, imageNumber);
         }
         System.out.print("e");
 
@@ -381,9 +381,86 @@ public class DCTMethodVideo {
 
     }
 
+    public void insertByteCode(byte[] message, int firstImageNumber) throws Exception {
+        int messageLength = message.length;
+        //short[] str2vec = new short[messageLength];
+        ImageBMP firstImage = new ImageBMP("video\\pictures\\0.jpg");
+        int numberOfRow = firstImage.getNumberOfRow();
+        int numberOfColumn = firstImage.getNumberOfColumn();
+        int numberOfImages = numberOfPicturesAll;
+        if (numberOfRow % sizeOfSegments != 0)
+            numberOfRow = numberOfRow - numberOfRow % sizeOfSegments;
+        if (numberOfColumn % sizeOfSegments != 0)
+            numberOfColumn = numberOfColumn - numberOfColumn % sizeOfSegments;
+        if (numberOfImages % sizeOfSegments != 0)
+            numberOfImages = numberOfImages - numberOfImages % sizeOfSegments;
+        int numberOfSegments = numberOfColumn * numberOfRow * numberOfImages / (sizeOfSegments * sizeOfSegments * sizeOfSegments);
+        if (numberOfSegments < messageLength/8)
+            throw (new Exception("String is too long"));
+        //for (int i = 0; i < numberOfImages; i++) {
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(firstImageNumber, "video\\pictures\\", ".jpg", numberOfColumn, numberOfRow);
+        int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
+        int sizeOfListOfBlueSegment = listOfBlueSegment.size();
+        VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
+        for (int k = 0; k < threadsNum; k++) {
+            if (k != threadsNum - 1)
+                listOfDCT[k] = new VideoDCT(listOfBlueSegment, k * (sizeOfListOfBlueSegment / threadsNum), (k + 1) * (sizeOfListOfBlueSegment / threadsNum));
+            else {
+                listOfDCT[k] = new VideoDCT(listOfBlueSegment, k * (sizeOfListOfBlueSegment / threadsNum), sizeOfListOfBlueSegment);
+            }
+        }
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        ArrayList<Future<ArrayList<double[][][]>>> futuresDCT = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            futuresDCT.add(executorService.submit(listOfDCT[k]));
+        }
+        ArrayList<double[][][]> coefOfDCT = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            ArrayList<double[][][]> temp = futuresDCT.get(k).get();
+            for (int i = 0; i < temp.size(); i++) {
+                coefOfDCT.add(temp.get(i).clone());
+            }
+
+        }
+
+        //insertMassage(coefOfDCT, message);
+        ArrayList<double[][][]> coefWithInsertedMessage = insertByteCode(coefOfDCT, message);
+
+        VideoInvertDCT[] listOfInvertDCT = new VideoInvertDCT[threadsNum];
+        for (int k = 0; k < threadsNum; k++) {
+            if (k != threadsNum - 1)
+                listOfInvertDCT[k] = new VideoInvertDCT(coefWithInsertedMessage, k * (sizeOfListOfBlueSegment / threadsNum), (k + 1) * (sizeOfListOfBlueSegment / threadsNum));
+            else {
+                listOfInvertDCT[k] = new VideoInvertDCT(coefWithInsertedMessage, k * (sizeOfListOfBlueSegment / threadsNum), sizeOfListOfBlueSegment);
+            }
+        }
+
+        ArrayList<Future<ArrayList<double[][][]>>> futuresInvertDCT = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            futuresInvertDCT.add(executorService.submit(listOfInvertDCT[k]));
+        }
+        ArrayList<double[][][]> encodedSegments = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            ArrayList<double[][][]> temp = futuresInvertDCT.get(k).get();
+            for (int i = 0; i < temp.size(); i++) {
+                encodedSegments.add(temp.get(i).clone());
+            }
+        }
+        executorService.shutdown();
+        double[][][] resultedBluePixels = invertDCTToBluePixelsMassive(encodedSegments, numberOfColumn, numberOfRow);
+        for (int imageNumber = 0; imageNumber < sizeOfSegments; imageNumber++) {
+            normFunction(resultedBluePixels, imageNumber, numberOfColumn, numberOfRow);
+            encodeImage(numberOfColumn, numberOfRow, resultedBluePixels, firstImageNumber, imageNumber);
+        }
+        System.out.print("e");
+
+        //}
+    }
+
     public String decodeMessageFromImage(int numberOfImages, String inputImage, String newFormat) throws ExecutionException, InterruptedException {
         ImageBMP imageDecode = new ImageBMP(inputImage + numberOfImages + newFormat);
-        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(numberOfImages, inputImage, newFormat, imageDecode.getNumberOfRow(), imageDecode.getNumberOfColumn());
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(numberOfImages, inputImage, newFormat, imageDecode.getNumberOfColumn(), imageDecode.getNumberOfRow());
         int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
         int sizeOfListOfBlueSegment = listOfBlueSegment.size();
         VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
@@ -413,28 +490,59 @@ public class DCTMethodVideo {
 
     }
 
-    public ArrayList<short[][][]> getListOfBlueSegmentsAccordingSegmentSize(int numberOfImage, String path, String format, int rowSize, int columnSize) {
+    public byte[] decodeByteCodeFromImage(int numberOfImages, String inputImage, String newFormat) throws ExecutionException, InterruptedException {
+        ImageBMP imageDecode = new ImageBMP(inputImage + numberOfImages + newFormat);
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(numberOfImages, inputImage, newFormat, imageDecode.getNumberOfColumn(), imageDecode.getNumberOfRow());
+        int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
+        int sizeOfListOfBlueSegment = listOfBlueSegment.size();
+        VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
+        for (int k = 0; k < threadsNum; k++) {
+            if (k != threadsNum - 1)
+                listOfDCT[k] = new VideoDCT(listOfBlueSegment, k * (sizeOfListOfBlueSegment / threadsNum), (k + 1) * (sizeOfListOfBlueSegment / threadsNum));
+            else {
+                listOfDCT[k] = new VideoDCT(listOfBlueSegment, k * (sizeOfListOfBlueSegment / threadsNum), sizeOfListOfBlueSegment);
+            }
+        }
+        System.out.println("start");
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        ArrayList<Future<ArrayList<double[][][]>>> futuresDCT = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            futuresDCT.add(executorService.submit(listOfDCT[k]));
+        }
+        ArrayList<double[][][]> listOfDecodeSpectrCoefOfDCT = new ArrayList<>();
+        for (int k = 0; k < threadsNum; k++) {
+            ArrayList<double[][][]> temp = futuresDCT.get(k).get();
+            for (int i = 0; i < temp.size(); i++) {
+                listOfDecodeSpectrCoefOfDCT.add(temp.get(i).clone());
+            }
+        }
+        executorService.shutdown();
+        System.out.println("finish");
+        return this.decodeByteCode(listOfDecodeSpectrCoefOfDCT);
+    }
+
+    public ArrayList<short[][][]> getListOfBlueSegmentsAccordingSegmentSize(int numberOfImage, String path, String format, int columnSize, int rowSize) {
         ArrayList<short[][][]> sizeOfSegmentsPisctures = new ArrayList<>(rowSize * columnSize * sizeOfSegments);
-        short[][][] matrixOfBluePixels = new short[sizeOfSegments][rowSize][columnSize];
+        short[][][] matrixOfBluePixels = new short[sizeOfSegments][columnSize][rowSize];
         for (int i = numberOfImage, j = 0; i < numberOfImage + sizeOfSegments; i++, j++) {
             ImageBMP firstImage = new ImageBMP(path + i + format);
-            for (int x = 0; x < rowSize; x++)
-                for (int y = 0; y < columnSize; y++) {
+            for (int x = 0; x < columnSize; x++)
+                for (int y = 0; y < rowSize; y++) {
                     matrixOfBluePixels[j][x][y] = (short) firstImage.getRGB(x, y).getBlue();
                 }
         }
         int numberOfSegments = (sizeOfSegments * rowSize * columnSize) / (sizeOfSegments * sizeOfSegments * sizeOfSegments);
         int indexOfStartPicture = 0;
         int indexOfEndPicture = sizeOfSegments - 1;
-        int indexOfStartColumn = 0;
-        int indexOfEndColumn = sizeOfSegments - 1;
+        int indexOfStartRow = 0;
+        int indexOfEndRow = sizeOfSegments - 1;
         for (int i = 0; i < numberOfSegments; i++) {
-            int indexOfStartRow = (sizeOfSegments * i) % rowSize;
-            int indexOfEndRow = indexOfStartRow + sizeOfSegments - 1;
-            short[][][] tempMassive = submatrix(matrixOfBluePixels, indexOfStartPicture, indexOfEndPicture, indexOfStartRow, indexOfEndRow, indexOfStartColumn, indexOfEndColumn);
-            if (indexOfEndRow == rowSize - 1) {
-                indexOfStartColumn = indexOfStartColumn + sizeOfSegments;
-                indexOfEndColumn = indexOfEndColumn + sizeOfSegments;
+            int indexOfStartColumn = (sizeOfSegments * i) % columnSize;
+            int indexOfEndColumn = indexOfStartColumn + sizeOfSegments - 1;
+            short[][][] tempMassive = submatrix(matrixOfBluePixels, indexOfStartPicture, indexOfEndPicture, indexOfStartColumn, indexOfEndColumn, indexOfStartRow, indexOfEndRow);
+            if (indexOfEndColumn == columnSize - 1) {
+                indexOfStartRow = indexOfStartRow + sizeOfSegments;
+                indexOfEndRow = indexOfEndRow + sizeOfSegments;
             }
 //            if ((indexOfEndRow == rowSize - 1) && (indexOfEndColumn == columnSize - 1)) {
 //                indexOfStartColumn = 0;
@@ -447,8 +555,9 @@ public class DCTMethodVideo {
         return sizeOfSegmentsPisctures;
     }
 
-    private void insertMassage(ArrayList<double[][][]> spectrCoefOfDCT, String message) {
+    private ArrayList<double[][][]> insertMassage(ArrayList<double[][][]> spectrCoefOfDCT, String message) {
         int messageLength = message.length();
+        ArrayList<double[][][]> result = new ArrayList<>(spectrCoefOfDCT.size());
         //ArrayList<double[][]> listOfSpectrCoefOfDCT = new ArrayList();
         short[] str2vec = new short[messageLength];
         for (int i = 0; i < messageLength; i++) {
@@ -482,21 +591,60 @@ public class DCTMethodVideo {
                         w2 = p + w1 + 1;
                     }
                 }
-                spectrCoefOfDCT.get(j + sizeOfSegments * i)[t1][u1][v1] = z1 * w1;
-                spectrCoefOfDCT.get(j + sizeOfSegments * i)[t2][u2][v2] = z2 * w2;
+                tempSpectrCoef[t1][u1][v1] = z1 * w1;
+                tempSpectrCoef[t2][u2][v2] = z2 * w2;
+                result.add(tempSpectrCoef);
             }
         }
+        return result;
+    }
+
+    private ArrayList<double[][][]> insertByteCode(ArrayList<double[][][]> spectrCoefOfDCT, byte[] byteCode) {
+        int messageLength = byteCode.length;
+        ArrayList<double[][][]> result = new ArrayList<>(spectrCoefOfDCT.size());
+        //ArrayList<double[][]> listOfSpectrCoefOfDCT = new ArrayList();
+        for (int i = 0; i < messageLength; i++) {
+                double[][][] tempSpectrCoef = spectrCoefOfDCT.get(i);
+                double w1 = Math.abs(tempSpectrCoef[t1][u1][v1]);
+                double w2 = Math.abs(tempSpectrCoef[t2][u2][v2]);
+                int z1 = 0;
+                int z2 = 0;
+                if (tempSpectrCoef[t1][u1][v1] >= 0) {
+                    z1 = 1;
+                } else {
+                    z1 = -1;
+                }
+                if (tempSpectrCoef[t2][u2][v2] >= 0) {
+                    z2 = 1;
+                } else {
+                    z2 = -1;
+                }
+                if (byteCode[i] == 0) {
+                    if ((w1 - w2) <= p) {
+                        w1 = p + w2 + 1;
+                    }
+                }
+                if (byteCode[i] == 1) {
+                    if ((w1 - w2) >= -p) {
+                        w2 = p + w1 + 1;
+                    }
+                }
+            tempSpectrCoef[t1][u1][v1] = z1 * w1;
+            tempSpectrCoef[t2][u2][v2] = z2 * w2;
+            result.add(tempSpectrCoef);
+        }
+        return result;
     }
 
 
-    private double[][][] invertDCTToBluePixelsMassive(ArrayList<double[][][]> listOfInvertSpectrCoefOfDCT, int rowSize, int columnSize) {
-        double[][][] resultMassive = new double[sizeOfSegments][rowSize][columnSize];
+    private double[][][] invertDCTToBluePixelsMassive(ArrayList<double[][][]> listOfInvertSpectrCoefOfDCT, int columnSize, int rowSize) {
+        double[][][] resultMassive = new double[sizeOfSegments][columnSize][rowSize];
         int numberOfSegments = (sizeOfSegments * rowSize * columnSize) / (sizeOfSegments * sizeOfSegments * sizeOfSegments);
-        int segmentsInRow = rowSize / sizeOfSegments;
+        int segmentsInColumn = columnSize / sizeOfSegments;
         int indexX = 0;
         int indexY = 0;
         for (int i = 0; i < numberOfSegments; i++) {
-            if (indexX == segmentsInRow) {
+            if (indexX == segmentsInColumn) {
                 indexX = 0;
                 indexY++;
             }
@@ -531,21 +679,21 @@ public class DCTMethodVideo {
         return resultMassive;
     }
 
-    private void encodeImage(int numberOfRow, int numberOfColumn, double[][][] bluePixels, int numberOfImg) {
+    private void encodeImage(int numberOfColumn, int numberOfRow, double[][][] bluePixels, int numberOfImg, int numberOfImgInSequence) {
 //        if (numberOfRow % sizeOfSegments != 0)
 //            numberOfRow = numberOfRow - numberOfRow % sizeOfSegments;
 //        if (numberOfColumn % sizeOfSegments != 0)
 //            numberOfColumn = numberOfColumn - numberOfColumn % sizeOfSegments;
-        ImageBMP emptyContainer = new ImageBMP("video\\pictures\\" + numberOfImg + ".png");
-        BufferedImage encImage = new BufferedImage(numberOfRow, numberOfColumn, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < numberOfRow; x++) {
-            for (int y = 0; y < numberOfColumn; y++) {
-                Color pixel = new Color(emptyContainer.getRGB(x, y).getRed(), emptyContainer.getRGB(x, y).getGreen(), (int) Math.round(bluePixels[numberOfImg][x][y]), emptyContainer.getRGB(x, y).getAlpha());
+        ImageBMP emptyContainer = new ImageBMP("video\\pictures\\" + (numberOfImg+numberOfImgInSequence) + ".jpg");
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < numberOfColumn; x++) {
+            for (int y = 0; y < numberOfRow; y++) {
+                Color pixel = new Color(emptyContainer.getRGB(x, y).getRed(), emptyContainer.getRGB(x, y).getGreen(), (int) Math.round(bluePixels[numberOfImgInSequence][x][y]), emptyContainer.getRGB(x, y).getAlpha());
                 encImage.setRGB(x, y, pixel.getRGB());
             }
         }
         try {
-            ImageIO.write(encImage, "bmp", new File(this.pathToResultContainer + numberOfImg + ".bmp"));
+            ImageIO.write(encImage, "bmp", new File(this.pathToResultContainer + (numberOfImg+numberOfImgInSequence) + ".jpg"));
             //ImageIO.write(encImage, "png", new File("images\\test.png"));
         } catch (IOException e) {
             System.out.println("error " + e.getMessage());
@@ -554,27 +702,27 @@ public class DCTMethodVideo {
     }
 
 
-    private short[][][] submatrix(short[][][] pixelMatrix, int indexOfStartPicture, int indexOfEndPicture, int indexOfStartRow, int indexOfEndRow, int indexOfStartColumn, int indexOfEndColumn) {
-        short[][][] tempMassive = new short[indexOfEndPicture - indexOfStartPicture + 1][indexOfEndRow - indexOfStartRow + 1][indexOfEndColumn - indexOfStartColumn + 1];
+    private short[][][] submatrix(short[][][] pixelMatrix, int indexOfStartPicture, int indexOfEndPicture, int indexOfStartColumn, int indexOfEndColumn, int indexOfStartRow, int indexOfEndRow) {
+        short[][][] tempMassive = new short[indexOfEndPicture - indexOfStartPicture + 1][indexOfEndColumn - indexOfStartColumn + 1][indexOfEndRow - indexOfStartRow + 1];
         for (int t = indexOfStartPicture, n = 0; t <= indexOfEndPicture; t++, n++)
-            for (int i = indexOfStartRow, k = 0; i <= indexOfEndRow; i++, k++)
-                for (int j = indexOfStartColumn, l = 0; j <= indexOfEndColumn; j++, l++)
+            for (int i = indexOfStartColumn, k = 0; i <= indexOfEndColumn; i++, k++)
+                for (int j = indexOfStartRow, l = 0; j <= indexOfEndRow; j++, l++)
                     tempMassive[n][k][l] = pixelMatrix[t][i][j];
 
         return tempMassive;
     }
 
-    private void normFunction(double[][][] input,int numberOfImg, int numberOfRow, int numberOfColumn) {
+    private void normFunction(double[][][] input, int numberOfImg, int numberOfColumn, int numberOfRow) {
         double min = Double.MAX_VALUE;
         double max = Double.MIN_VALUE;
-        for (int i = 0; i < numberOfRow; i++) {
-            for (int j = 0; j < numberOfColumn; j++) {
+        for (int i = 0; i < numberOfColumn; i++) {
+            for (int j = 0; j < numberOfRow; j++) {
                 if (input[numberOfImg][i][j] > max) max = input[numberOfImg][i][j];
                 if (input[numberOfImg][i][j] < min) min = input[numberOfImg][i][j];
             }
         }
-        for (int i = 0; i < numberOfRow; i++) {
-            for (int j = 0; j < numberOfColumn; j++) {
+        for (int i = 0; i < numberOfColumn; i++) {
+            for (int j = 0; j < numberOfRow; j++) {
                 input[numberOfImg][i][j] = 255 * (input[numberOfImg][i][j] + Math.abs(min)) / (max + Math.abs(min));
             }
         }
@@ -604,6 +752,20 @@ public class DCTMethodVideo {
         }
         String result = new String(decodeMessage);
         return result;
+    }
+
+    private byte[] decodeByteCode(ArrayList<double[][][]> spectrCoefOfDCT) {
+        byte[] temp = new byte[spectrCoefOfDCT.size()];
+        for (int k = 0; k < spectrCoefOfDCT.size(); k++) {
+            double w1 = Math.abs(spectrCoefOfDCT.get(k)[t1][u1][v1]);
+            double w2 = Math.abs(spectrCoefOfDCT.get(k)[t2][u2][v2]);
+            if (w1 > w2)
+                temp[k] = 0;
+            if (w1 < w2)
+                temp[k] = 1;
+
+        }
+        return temp;
     }
 
 }

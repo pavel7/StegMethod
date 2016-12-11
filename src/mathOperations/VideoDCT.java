@@ -63,21 +63,21 @@ public class VideoDCT implements Callable {
                     for (int k = 0; k < sizeOfSegments; k++) {
                         double sum = 0;
                         for (int tempImage = 0; tempImage < sizeOfSegments; tempImage++) {
-                            for (int tempRow = 0; tempRow < sizeOfSegments; tempRow++) {
-                                for (int tempColumn = 0; tempColumn < sizeOfSegments; tempColumn++) {
+                            for (int tempColumn = 0; tempColumn < sizeOfSegments; tempColumn++) {
+                                for (int tempRow = 0; tempRow < sizeOfSegments; tempRow++) {
                                     sum = sum +
-                                            listOfSegments.get(i)[tempImage][tempRow][tempColumn] *
+                                            listOfSegments.get(i)[tempImage][tempColumn][tempRow] *
                                                     Math.cos(Math.PI * t * (2 * tempImage + 1) / (2 * sizeOfSegments)) *
-                                                    Math.cos(Math.PI * j * (2 * tempRow + 1) / (2 * sizeOfSegments)) *
-                                                    Math.cos(Math.PI * k * (2 * tempColumn + 1) / (2 * sizeOfSegments));
+                                                    Math.cos(Math.PI * j * (2 * tempColumn + 1) / (2 * sizeOfSegments)) *
+                                                    Math.cos(Math.PI * k * (2 * tempRow + 1) / (2 * sizeOfSegments));
                                 }
                             }
                         }
-                        tempMassive[t][j][k] = sigmaCoefficient(t) * sigmaCoefficient(j) * sigmaCoefficient(k) * sum * Math.sqrt(8.00 / ((double) (sizeOfSegments * sizeOfSegments * sizeOfSegments)));
+                        tempMassive[t][j][k] = sigmaCoefficient(t) * sigmaCoefficient(j) * sigmaCoefficient(k) * sum * Math.sqrt(8.0 / ((double) (sizeOfSegments * sizeOfSegments * sizeOfSegments)));
                     }
                 }
             }
-            //System.out.println(i + "first");
+            System.out.println(i + "first");
             listOfSpectrCoefOfDCT.add(tempMassive);
         }
         return listOfSpectrCoefOfDCT;

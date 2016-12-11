@@ -14,7 +14,7 @@ public class Test {
         String pathToResultContainer = "images\\EncodedImage.jpg";
         String noiseFilenameOutput = "images\\testq";
         String format = ".jpg";
-        double comparisonCoefficient = 100;
+        double comparisonCoefficient = 120;
         int sizeOfSegments = 8;
         double tr = Math.cos(Math.PI * 8 * (2 * 8 + 1) / (2 * sizeOfSegments));
         String message = "Notepad++ v6.8.3 bug-fixes:\n" +

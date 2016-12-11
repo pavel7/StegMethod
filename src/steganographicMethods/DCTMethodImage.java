@@ -266,17 +266,17 @@ public class DCTMethodImage {
         return listOfInvertSpectrCoefOfDCT;
     }
 
-    private void normFunction(double[][] input, int numberOfRow, int numberOfColumn) {
+    private void normFunction(double[][] input, int numberOfColumn, int numberOfRow) {
         double min = Double.MAX_VALUE;
         double max = Double.MIN_VALUE;
-        for (int i = 0; i < numberOfRow; i++) {
-            for (int j = 0; j < numberOfColumn; j++) {
+        for (int i = 0; i < numberOfColumn; i++) {
+            for (int j = 0; j < numberOfRow; j++) {
                 if (input[i][j] > max) max = input[i][j];
                 if (input[i][j] < min) min = input[i][j];
             }
         }
-        for (int i = 0; i < numberOfRow; i++) {
-            for (int j = 0; j < numberOfColumn; j++) {
+        for (int i = 0; i < numberOfColumn; i++) {
+            for (int j = 0; j < numberOfRow; j++) {
                 input[i][j] = 255 * (input[i][j] + Math.abs(min)) / (max + Math.abs(min));
             }
         }

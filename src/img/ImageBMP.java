@@ -19,8 +19,8 @@ public class ImageBMP {
         }
     }
 
-    public ImageBMP(BufferedImage imgContainer){
-            img = imgContainer;
+    public ImageBMP(BufferedImage imgContainer) {
+        img = imgContainer;
     }
 
     public Color getRGB(int x, int y) {
@@ -49,6 +49,30 @@ public class ImageBMP {
     }
 
     public static void main(String[] args) {
+        String pathToImage = "images\\newpics\\2c";
+        ImageBMP firstImage = new ImageBMP(pathToImage+".bmp");
+        int numberOfColumn = firstImage.getNumberOfColumn();
+        int numberOfRow = firstImage.getNumberOfRow();
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+
+        for (int x = 0; x < numberOfColumn; x++) {
+            for (int y = 0; y < numberOfRow; y++) {
+                int bluePixelValue = 255;
+                Color pixel = new Color(bluePixelValue - firstImage.getRGB(x,y).getRed(),
+                                        bluePixelValue - firstImage.getRGB(x,y).getGreen(),
+                                        bluePixelValue - firstImage.getRGB(x,y).getBlue(),
+                                        bluePixelValue - firstImage.getRGB(x,y).getAlpha());
+                encImage.setRGB(x, y, pixel.getRGB());
+            }
+        }
+
+
+        try {
+            ImageIO.write(encImage, "bmp", new File(pathToImage + "1.bmp"));
+            //ImageIO.write(encImage, "png", new File("images\\test.png"));
+        } catch (IOException e) {
+            System.out.println("error " + e.getMessage());
+        }
         //        ImageBMP test = new ImageBMP("images\\Lenna.bmp");
 //        ArrayList<short[][]> testBluePixel = DCTMethodImage.imageToListOfBlueSegments(test);
 //        ArrayList<double[][]> listOfSpectrCoefOfDCT = DCTMethodImage.calculateSpectrCoefOfDCT(testBluePixel);

@@ -61,19 +61,19 @@ public class VideoInvertDCT implements Callable {
                     for (int k = 0; k < sizeOfSegments; k++) {
                         double sum = 0;
                         for (int tempImage = 0; tempImage < sizeOfSegments; tempImage++) {
-                            for (int tempRow = 0; tempRow < sizeOfSegments; tempRow++) {
-                                for (int tempColumn = 0; tempColumn < sizeOfSegments; tempColumn++) {
+                            for (int tempColumn = 0; tempColumn < sizeOfSegments; tempColumn++) {
+                                for (int tempRow = 0; tempRow < sizeOfSegments; tempRow++) {
                                     sum = sum + sigmaCoefficient(tempImage) *
-                                            sigmaCoefficient(tempRow) *
                                             sigmaCoefficient(tempColumn) *
-                                            spectrCoefOfDCT.get(i)[tempImage][tempRow][tempColumn] *
+                                            sigmaCoefficient(tempRow) *
+                                            spectrCoefOfDCT.get(i)[tempImage][tempColumn][tempRow] *
                                             Math.cos(Math.PI * tempImage * (2 * t + 1) / (2 * sizeOfSegments)) *
-                                            Math.cos(Math.PI * tempRow * (2 * j + 1) / (2 * sizeOfSegments)) *
-                                            Math.cos(Math.PI * tempColumn * (2 * k + 1) / (2 * sizeOfSegments));
+                                            Math.cos(Math.PI * tempColumn * (2 * j + 1) / (2 * sizeOfSegments)) *
+                                            Math.cos(Math.PI * tempRow * (2 * k + 1) / (2 * sizeOfSegments));
                                 }
                             }
                         }
-                        tempMassive[t][j][k] = sum * Math.sqrt(8.00 / ((double) (sizeOfSegments * sizeOfSegments * sizeOfSegments)));
+                        tempMassive[t][j][k] = sum * Math.sqrt(8.0 / ((double) (sizeOfSegments * sizeOfSegments * sizeOfSegments)));
                     }
                 }
             }

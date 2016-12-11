@@ -24,7 +24,7 @@ public class StringComparer {
             return (int) (100.0 * sumOfDif / (double) firstString.length());
     }
 
-    public int checkDiffereneceByBit() {
+    public double checkDiffereneceBER() {
         short[] str2vecFirst = new short[firstString.length()];
         short[] str2vecSecond = new short[secondString.length()];
         for (int i = 0; i < firstString.length(); i++) {
@@ -43,7 +43,7 @@ public class StringComparer {
             }
         }
         BitComparer testComparer = new BitComparer(symbolInDecFirst, symbolInDecSecond);
-        return testComparer.checkDifferenece();
+        return testComparer.checkBER();
     }
 
 }

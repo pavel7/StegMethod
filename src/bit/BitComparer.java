@@ -9,7 +9,7 @@ public class BitComparer {
         secondString = newSecondString;
     }
 
-    public int checkDifferenece() {
+    public double checkBER() {
         int sumOfDif = 0;
         for (int i = 0; i < firstString.length; i++) {
             if (firstString[i] != secondString[i])
@@ -18,7 +18,7 @@ public class BitComparer {
         if (sumOfDif == 0)
             return 0;
         else
-            return (int) (100.0 * sumOfDif/ (double) firstString.length);
+            return ((double) sumOfDif / (double) firstString.length);
     }
 
 }
