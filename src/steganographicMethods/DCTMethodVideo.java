@@ -178,7 +178,7 @@ public class DCTMethodVideo {
 //                            ImageIO.write(javaImage, "PNG", new File(outdir,
 //                                    fileName));
 //                            numberOfFrames++;
-//                            ImageBMP imageInput = new ImageBMP(outdir + "\\" + fileName);
+//                            ImageBMP imageInput = new ImageBMP(outdir + File.separator + fileName);
 //                            listOfSegments.add(imageToListOfBlueSegments(imageInput));
 //                            start += step;
 //                        }
@@ -208,7 +208,7 @@ public class DCTMethodVideo {
     public void videoToListOfImages() throws IOException {
         String filename = pathToEmptyContainer;
         //ArrayList<short[][]> listOfSegments = new ArrayList<>();
-        File outdir = new File("video\\pictures");
+        File outdir = new File("video" + File.separator + "pictures");
         IContainer container = IContainer.make();
 
         if (container.open(filename, IContainer.Type.READ, null) < 0)
@@ -307,7 +307,7 @@ public class DCTMethodVideo {
     public void insertText(String message, int firstImageNumber) throws Exception {
         int messageLength = message.length();
         short[] str2vec = new short[messageLength];
-        ImageBMP firstImage = new ImageBMP("video\\pictures\\1.png");
+        ImageBMP firstImage = new ImageBMP("video" + File.separator + "pictures" + File.separator + "1.png");
         int numberOfRow = firstImage.getNumberOfRow();
         int numberOfColumn = firstImage.getNumberOfColumn();
         int numberOfImages = numberOfPicturesAll;
@@ -321,7 +321,8 @@ public class DCTMethodVideo {
         if (numberOfSegments < messageLength)
             throw (new Exception("String is too long"));
         //for (int i = 0; i < numberOfImages; i++) {
-        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(0, "video\\pictures\\", ".png", numberOfColumn, numberOfRow);
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(0, "video" + File.separator +
+                "pictures" + File.separator, ".png", numberOfColumn, numberOfRow);
         int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
         int sizeOfListOfBlueSegment = listOfBlueSegment.size();
         VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
@@ -384,7 +385,7 @@ public class DCTMethodVideo {
     public void insertByteCode(byte[] message, int firstImageNumber) throws Exception {
         int messageLength = message.length;
         //short[] str2vec = new short[messageLength];
-        ImageBMP firstImage = new ImageBMP("video\\pictures\\0.jpg");
+        ImageBMP firstImage = new ImageBMP("video" + File.separator + "pictures" + File.separator + "0.jpg");
         int numberOfRow = firstImage.getNumberOfRow();
         int numberOfColumn = firstImage.getNumberOfColumn();
         int numberOfImages = numberOfPicturesAll;
@@ -398,7 +399,7 @@ public class DCTMethodVideo {
         if (numberOfSegments < messageLength/8)
             throw (new Exception("String is too long"));
         //for (int i = 0; i < numberOfImages; i++) {
-        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(firstImageNumber, "video\\pictures\\", ".jpg", numberOfColumn, numberOfRow);
+        ArrayList<short[][][]> listOfBlueSegment = getListOfBlueSegmentsAccordingSegmentSize(firstImageNumber, "video" + File.separator + "pictures" + File.separator, ".jpg", numberOfColumn, numberOfRow);
         int threadsNum = new Double(Math.ceil(Runtime.getRuntime().availableProcessors())).intValue();
         int sizeOfListOfBlueSegment = listOfBlueSegment.size();
         VideoDCT[] listOfDCT = new VideoDCT[threadsNum];
@@ -684,8 +685,8 @@ public class DCTMethodVideo {
 //            numberOfRow = numberOfRow - numberOfRow % sizeOfSegments;
 //        if (numberOfColumn % sizeOfSegments != 0)
 //            numberOfColumn = numberOfColumn - numberOfColumn % sizeOfSegments;
-        ImageBMP emptyContainer = new ImageBMP("video\\pictures\\" + (numberOfImg+numberOfImgInSequence) + ".jpg");
-        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+        ImageBMP emptyContainer = new ImageBMP("video" + File.separator + "pictures" + File.separator + (numberOfImg+numberOfImgInSequence) + ".jpg");
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
         for (int x = 0; x < numberOfColumn; x++) {
             for (int y = 0; y < numberOfRow; y++) {
                 Color pixel = new Color(emptyContainer.getRGB(x, y).getRed(), emptyContainer.getRGB(x, y).getGreen(), (int) Math.round(bluePixels[numberOfImgInSequence][x][y]), emptyContainer.getRGB(x, y).getAlpha());

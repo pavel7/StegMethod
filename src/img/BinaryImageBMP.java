@@ -61,7 +61,7 @@ public class BinaryImageBMP {
     public void saveImageFromByteCode (String path, byte[] image){
         int numberOfRow = this.getNumberOfRow();
         int numberOfColumn = this.getNumberOfColumn();
-        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
         int k = 0;
         for (int x = 0; x < numberOfColumn; x++) {
             for (int y = 0; y < numberOfRow; y++) {
@@ -105,8 +105,8 @@ public class BinaryImageBMP {
 //            }
 //        }
 //        try {
-//            ImageIO.write(encImage, "bmp", new File("images\\" + "test" + ".bmp"));
-//            //ImageIO.write(encImage, "png", new File("images\\test.png"));
+//            ImageIO.write(encImage, "bmp", new File("images" + File.separator + "test" + ".bmp"));
+//            //ImageIO.write(encImage, "png", new File("images" + File.separator + "test.png"));
 //        } catch (IOException e) {
 //            System.out.println("error " + e.getMessage());
 //        }

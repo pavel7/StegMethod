@@ -154,9 +154,9 @@ public class ByteImageBMP {
     }
 
     public static void main(String[] args) {
-        ByteImageBMP newC = new ByteImageBMP("images\\hologramOfNewBMP.bmp");
+        ByteImageBMP newC = new ByteImageBMP("images" + File.separator + "hologramOfNewBMP.bmp");
 //        System.out.println(newC.divideImageOnPart(32, 16, "images\\dividedIM\\"));
-        newC.combineImageFromParts(32,16,"images\\test\\90-","images\\090");
+        newC.combineImageFromParts(32,16,"images" + File.separator + "test" + File.separator + "90-","images" + File.separator + "090");
 //        for (int i = 0; i < newC.getNumberOfRow(); i++) {
 //            for (int j = 0; j < newC.getNumberOfColumn(); j++) {
 //                System.out.print(newC.getColor(i, j) + " ");
@@ -175,8 +175,8 @@ public class ByteImageBMP {
 //            System.out.println();
 //            }
 //        try {
-//            ImageIO.write(encImage, "png", new File("images\\" + "test" + ".png"));
-//            //ImageIO.write(encImage, "png", new File("images\\test.png"));
+//            ImageIO.write(encImage, "png", new File("images" + File.separator + "test" + ".png"));
+//            //ImageIO.write(encImage, "png", new File("images" + File.separator + "test.png"));
 //        } catch (IOException e) {
 //            System.out.println("error " + e.getMessage());
 //        }

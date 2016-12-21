@@ -1,5 +1,7 @@
 package img;
 
+import java.io.File;
+
 /**
  * Created by Павел on 31.01.2016.
  */
@@ -141,7 +143,7 @@ public class Hologram {
 
     public static void main(String[] args) {
         //useHologram("images\\test1.bmp", "images\\point22", 128.0, 3, 128, 128);
-        useHologramBack("images\\080resultedIMG.bmp", "images\\080HolInp", 64, 64);
+        useHologramBack("images" + File.separator + "080resultedIMG.bmp", "images" + File.separator + "080HolInp", 64, 64);
 
     }
 }

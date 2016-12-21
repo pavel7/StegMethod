@@ -18,9 +18,9 @@ public class TestVideo {
 
     public static void main(String a[]) throws Exception {
         String format = ".jpg";
-        String filenameInput = "video\\IMG_0065.mp4";
-        String filenameOutput = "video\\EncodedPictures\\EncodedImage";
-        String noiseFilenameOutput = "video\\NoisesEncodedPictures\\EncodedImage";
+        String filenameInput = "video" + File.separator + "IMG_0065.mp4";
+        String filenameOutput = "video" + File.separator + "EncodedPictures" + File.separator + "EncodedImage";
+        String noiseFilenameOutput = "video" + File.separator + "NoisesEncodedPictures" + File.separator + "EncodedImage";
         DCTMethodVideo test = new DCTMethodVideo(filenameInput, filenameOutput, 170);
         //test.videoToListOfImages();
         test.setNumberOfPicturesAll(8);
@@ -36,9 +36,9 @@ public class TestVideo {
 //                "3.  Plugin Manager 1.3.5\n" +
 //                "Notepad++ v6\n" +
 //                "3.  Plugin Manager 1.3.5123\n");
-        String copyrightSymbol = "images\\test1.bmp";
-        String hologramOfCopyrightSymbol = "images\\hologramOfNewBMP";
-        String pathToPartsOfCopyrightSymbol = "images\\dividedIM\\";
+        String copyrightSymbol = "images" + File.separator + "test1.bmp";
+        String hologramOfCopyrightSymbol = "images" + File.separator + "hologramOfNewBMP";
+        String pathToPartsOfCopyrightSymbol = "images" + File.separator + "dividedIM" + File.separator;
         Hologram.useHologram(copyrightSymbol, hologramOfCopyrightSymbol, 128.0, 3, 128, 128);
         //Hologram.useHologram(hologramOfCopyrightSymbol + ".bmp", "images\\testFromHologram", 0.0, 3, 128, 128);
         ByteImageBMP newCopyright = new ByteImageBMP(hologramOfCopyrightSymbol+".bmp");
@@ -80,7 +80,7 @@ public class TestVideo {
                 //newGenerator.addNoiseFast();
                 ByteImageBMP newCopyrightPart = new ByteImageBMP(pathToPartsOfCopyrightSymbol + j + ".bmp");
                 byte[] outputByte = test.decodeByteCodeFromImage(startSegment, noiseFilenameOutput, format);
-                newCopyrightPart.saveImageFromByteCode("images\\test\\" + i + "-" + j, BitOperations.bitToShort(outputByte));
+                newCopyrightPart.saveImageFromByteCode("images" + File.separator + "test" + File.separator + i + "-" + j, BitOperations.bitToShort(outputByte));
             }
         }
 

@@ -158,7 +158,7 @@ public class DCTMethodImage {
 //            numberOfRow = numberOfRow - numberOfRow % sizeOfSegments;
 //        if (numberOfColumn % sizeOfSegments != 0)
 //            numberOfColumn = numberOfColumn - numberOfColumn % sizeOfSegments;
-        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
         for (int x = 0; x < numberOfColumn; x++) {
             for (int y = 0; y < numberOfRow; y++) {
                 Color pixel = new Color(emptyContainer.getRGB(x, y).getRed(), emptyContainer.getRGB(x, y).getGreen(), (int) Math.round(bluePixels[x][y]), emptyContainer.getRGB(x, y).getAlpha());

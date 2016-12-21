@@ -49,11 +49,11 @@ public class ImageBMP {
     }
 
     public static void main(String[] args) {
-        String pathToImage = "images\\newpics\\2c";
+        String pathToImage = "images" + File.separator + "newpics" + File.separator + "2c";
         ImageBMP firstImage = new ImageBMP(pathToImage+".bmp");
         int numberOfColumn = firstImage.getNumberOfColumn();
         int numberOfRow = firstImage.getNumberOfRow();
-        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+        BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
 
         for (int x = 0; x < numberOfColumn; x++) {
             for (int y = 0; y < numberOfRow; y++) {
@@ -94,7 +94,7 @@ public class ImageBMP {
 //        double dif = ImageBMP.difference(listOfInvertSpectrCoefOfDCT, testBluePixel);
 //        double[][] listOfBluePixels = DCTMethodImage.invertDCTToBluePixelsMassive(listOfInvertSpectrCoefOfDCT, test);
 //        DCTMethodImage.encodeImage(test, listOfBluePixels);
-//        ImageBMP testDecode = new ImageBMP("images\\test.png");
+//        ImageBMP testDecode = new ImageBMP("images" + File.separator + "test.png");
 //        ArrayList<short[][]> testDecodeBluePixel = DCTMethodImage.imageToListOfBlueSegments(testDecode);
 //        ArrayList<double[][]> listOfDecodeSpectrCoefOfDCT = DCTMethodImage.calculateSpectrCoefOfDCT(testDecodeBluePixel);
 //        System.out.println(DCTMethodImage.decodeMessage(listOfDecodeSpectrCoefOfDCT));

@@ -3,6 +3,7 @@ package assessmentTests;
 import img.ImageBMP;
 
 import java.awt.*;
+import java.io.File;
 
 public class DifIndicatorTests {
     private String pathToEmptyContainer;
@@ -150,8 +151,8 @@ public class DifIndicatorTests {
     }
 
     public static void main(String[] args) {
-        String pathToEmptyContainer = "images\\Lenna.bmp";
-        String pathToResultContainer = "images\\EncodedImage.bmp";
+        String pathToEmptyContainer = "images" + File.separator + "Lenna.bmp";
+        String pathToResultContainer = "images" + File.separator + "EncodedImage.bmp";
         DifIndicatorTests test = new DifIndicatorTests(pathToEmptyContainer, pathToResultContainer);
         test.calculateDifIndicator();
     }

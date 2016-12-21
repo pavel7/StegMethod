@@ -64,7 +64,7 @@ public class NoiseGenerator {
                 }
             }
             ImageBMP tempImage = new ImageBMP(this.pathToEncodedContainer + i + this.format);
-            BufferedImage encImage = new BufferedImage(numberOfRow, numberOfColumn, BufferedImage.TYPE_INT_RGB);
+            BufferedImage encImage = new BufferedImage(numberOfRow, numberOfColumn, BufferedImage.TYPE_3BYTE_BGR);
             if (invertCoef == false) {
                 for (int x = 0; x < numberOfRow; x++) {
                     for (int y = 0; y < numberOfColumn; y++) {
@@ -129,7 +129,7 @@ public class NoiseGenerator {
         for (int i = 0; i < this.sizeOfSegments; i++) {
             int[] massivOfRandElems = this.createArray();
             ImageBMP tempImage = new ImageBMP(this.pathToEncodedContainer + (this.startSegment + i) + this.format);
-            BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+            BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
             if (invertCoef == false) {
                 for (int x = 0; x < numberOfColumn; x++) {
                     for (int y = 0; y < numberOfRow; y++) {
@@ -206,7 +206,7 @@ public class NoiseGenerator {
         }
         for (int i = 0; i < numberOfAllImages; i++) {
             ImageBMP tempImage = new ImageBMP(this.pathToEncodedContainer + (this.startSegment + i) + this.format);
-            BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_INT_RGB);
+            BufferedImage encImage = new BufferedImage(numberOfColumn, numberOfRow, BufferedImage.TYPE_3BYTE_BGR);
             if (isPresent(necessaryMassiveOfRandomImages, i)) {
                 for (int x = 0; x < numberOfColumn; x++) {
                     for (int y = 0; y < numberOfRow; y++) {
