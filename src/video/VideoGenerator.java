@@ -15,13 +15,9 @@ import javax.imageio.ImageIO;
 
 import com.xuggle.mediatool.IMediaWriter;
 import com.xuggle.mediatool.ToolFactory;
-import com.xuggle.xuggler.ICodec;
+import com.xuggle.xuggler.*;
 
 public class VideoGenerator {
-
-    private static final double FRAME_RATE = 20;
-
-    private static final int SECONDS_TO_RUN_FOR = 20;
 
     private static final String outputFilename = "testVideo" + File.separator + "myVideo.mp4";
 
@@ -37,7 +33,7 @@ public class VideoGenerator {
 
         writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, 512, 512);
 
-        File folder = new File("video" + File.separator + "EncodedPictures");
+        File folder = new File("video" + File.separator + "EncodedPictures" + File.separator);
         File[] listOfFiles = folder.listFiles();
 
         int indexVal = 0;
@@ -49,11 +45,49 @@ public class VideoGenerator {
             }
         }
 
+        String filename = "video" + File.separator + "IMG_0065.mp4";
+        //ArrayList<short[][]> listOfSegments = new ArrayList<>();
+        File outdir = new File("video" + File.separator + "pictures" + File.separator);
+        IContainer container = IContainer.make();
+
+        if (container.open(filename, IContainer.Type.READ, null) < 0)
+            throw new IllegalArgumentException("could not open file: "
+                    + filename);
+        int numStreams = container.getNumStreams();
+        int videoStreamId = -1;
+        IStreamCoder videoCoder = null;
+
+        for (int i = 0; i < numStreams; i++) {
+            IStream stream = container.getStream(i);
+            IStreamCoder coder = stream.getStreamCoder();
+            if (coder.getCodecType() == ICodec.Type.CODEC_TYPE_VIDEO) {
+                videoStreamId = i;
+                videoCoder = coder;
+                break;
+            }
+        }
+
+        if (videoStreamId == -1)
+            throw new RuntimeException("could not find video stream in container: "
+                    + filename);
+
+        if (videoCoder.open() < 0)
+            throw new RuntimeException(
+                    "could not open video decoder for container: " + filename);
+
+        IPacket packet = IPacket.make();
+
+        long start = 0;//6 * 1000 * 1000;
+        long end = container.getDuration();
+
+        long step = (1 * 1000 * 1000) / videoCoder.getFrameRate().getNumerator();
+
         //for (int index = 0; index < SECONDS_TO_RUN_FOR * FRAME_RATE; index++) {
         for (int index = 0; index < listOfFiles.length; index++) {
             BufferedImage screen = getImage("EncodedImage", index);
             BufferedImage bgrScreen = convertToType(screen, BufferedImage.TYPE_3BYTE_BGR);
-            writer.encodeVideo(0, bgrScreen, 300*index, TimeUnit.MILLISECONDS);
+            writer.encodeVideo(0, bgrScreen, start, TimeUnit.MICROSECONDS);
+            start+=step;
 
         }
         // tell the writer to close and write the trailer if needed
@@ -62,7 +96,7 @@ public class VideoGenerator {
 
     }
 
-    public static BufferedImage convertToType(BufferedImage sourceImage, int targetType) {
+    private static BufferedImage convertToType(BufferedImage sourceImage, int targetType) {
         BufferedImage image;
         if (sourceImage.getType() == targetType) {
             image = sourceImage;
